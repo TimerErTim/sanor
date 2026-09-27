@@ -1,10 +1,11 @@
 #!/bin/bash
+version="0.3.0"
 
+cd ../gallery/
 # Loop through every file ending in .typ
 for file in *.typ; do
     # Get the filename without the extension (e.g., "main" instead of "main.c")
     filename="${file%.*}"
-    version="0.3.0"
     
     echo "Compiling $file..."
 
@@ -20,8 +21,17 @@ for file in *.typ; do
     rm *.png
 done
 
+
 for file in *.pdf; do 
     mv "$file" ../assets/
 done
+
+echo "./gallery/*.typ - Done!"
+
+cd ../docs/ 
+sed -i "s|#import \"@preview/sanor:$version\": \*|#import \"@local/sanor:$version\": \*|g" example.typ
+typst c example.typ 
+sed -i "s|#import \"@local/sanor:$version\": \*|#import \"@preview/sanor:$version\": \*|g" example.typ
+echo "docs/example.pdf - Done!" 
 
 echo "Done!"

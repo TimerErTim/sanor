@@ -1,16 +1,16 @@
 #import "../src/lib.typ": *
-#import mcomps: *
+#import components.markup as mc
 
 #set page(paper: "presentation-16-9")
 #set text(size: 25pt)
 
-#let rrect = mrect.with(
+#let rrect = rect.with(
   defined-cases: (yellow: case(fill: yellow)),
   radius: 0.5em,
   inset: 0.5em,
 )
 
-#let yellowbox = mcomp(
+#let yellowbox = mc.new(
   "yellowbox",
   rect.with(stroke: yellow),
   wide: case(width: 100%),

@@ -1,5 +1,7 @@
 # Sanor 
 
+<!-- CHORES: create the 'put' object mechanism -->
+
 Precise animated presentation framework in Typst. 
 Check the [manual](./docs/sanor-manual.pdf) for details.
 
@@ -34,7 +36,7 @@ Sanor provides a framework for creating highly animated PDF presentations by ste
 - **Handout Support**: Generate static handouts from animated presentations with `set-option(handout: true)`
 - **Pdfpc Integration**: Integrates Pdfpc functionality from [Polylux](https://github.com/polylux-typ) package.
 
-To demostrate these fearures, take a look at [examples](./docs/example.pdf) file.
+To demostrate these features, take a look at [examples](./docs/example.pdf) file.
 
 ## Core Concepts
 
@@ -252,7 +254,8 @@ Then, when I started creating some slides with it, I thought of a way to integra
 ## Change Log
 - **0.3.0** Updated documentation for the new release.
   - Added support for `tag(name, body)` callbacks that receive a non-hidden tagging helper for nested tagging.
-  - Documented predefined component imports and usage via `mcomps` and `ccomps`.
+  - Changed internal representation of cases, rules, and objects. *minor breaking change*.
+  - Documented predefined component imports and usage via `components.markup` and `components.cetz`.
   - Updated installation examples and gallery reference snippets for version `0.3.0`.
   - Added magic selector `select` for a smart selector used with show rules.
 - **0.2.1** Refractored the whole animation control system.

@@ -455,9 +455,13 @@ Note that all component will have `name` keyword argument for naming the object 
 ```
 
 === Predefined Components
-You can import the 'mcomps' module containing predefined markup components for drawing basic stuff like rectangle, circle, block, etc. These defined components have the same name as the standard Typst's but are prefixed with `m`, like `mrect` for `rect`, `mcircle` for circle, `mline` for `line`.
+You can import the 'mcomps' module containing predefined markup components for drawing basic stuff like rectangle, circle, block, etc. These defined components have the same name as the standard Typst's, so you have to carefully import them with 
+```
+#import components.markup as mc
+```
+and use it as `#mc.line(s, ..)`, `#mc.circle(s, ..)`.
 
-This package also contains predefined components from CeTZ package. All element drawing functions in the 'draw' module of CeTZ are available with prefix of `c` like `ccontent`, `ccircle`, `cline`, `crect`. The CeTZ elements are hidden by CeTZ's `hide` function by default, and *you can use the element's name* to refer in the rule specification too.
+This package also contains predefined components from CeTZ package. All element drawing functions in the 'draw' module of CeTZ are available in `components.cetz` module. The CeTZ elements are hidden by CeTZ's `hide` function by default, and *you can use the element's name* to refer in the rule specification too.
 #zebraw(source-example("../assets/example-ccomps.typ"), line-range: (2, -1))
 #render-pdf("../assets/example-ccomps.pdf", pages: 4, n-cols: 2)
 // Don't forget to tell about the ccomps and mcomps
@@ -477,6 +481,7 @@ $a$ // selected
   src, run(src.text, mode: "markup"),
 )
 This usually works with 'grouped' elements like `$a^x$`, `$a_x$`, `$(..)$`, `block`, `rect` and so on. However, the 'sequential' elements like `$x + y$` do not work as expected, because Typst may collapse the sequence with another surrounding sequence making the element not detectable. 
+
 === Ppfpc Integration 
 This package imports the Polylux's pdfpc module and integrated within the slide function. To use this feature, please refer to their package:
 #link("https://polylux.dev/book/external/pdfpc.html").
@@ -577,12 +582,9 @@ Integration with chemformula.
 #tidy.show-module(docs-object)
 
 == Components Module
-#let docs-components = tidy.parse-module({
-  read("../src/components/component.typ")
-  read("../src/components/ccomps.typ")
-  read("../src/components/mcomps.typ")
-})
-#tidy.show-module(docs-components)
+#tidy.show-module(tidy.parse-module(read("../src/components/component.typ")))
+#tidy.show-module(tidy.parse-module(read("../src/components/markup.typ"), label-prefix: "markup"))
+#tidy.show-module(tidy.parse-module(read("../src/components/cetz.typ"), label-prefix: "cetz"))
 
 == Pdfpc Module 
 #let docs-pdfpc = tidy.parse-module(read("../src/pdfpc.typ"))

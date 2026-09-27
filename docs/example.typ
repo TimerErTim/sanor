@@ -1,4 +1,4 @@
-#import "@local/sanor:0.3.0": *
+#import "@preview/sanor:0.3.0": *
 
 // Set up presentation format.
 #set page(paper: "presentation-16-9", fill: luma(20))
@@ -214,21 +214,21 @@
   [
     #let tag = tag.with(s)
     = Predefined Objects: Components
-    For markup, `#import mcomps: *`,\  for CeTZ elements, `#import ccomps: *`.
+    For markup, `#import components.markup as mc`,\  for CeTZ elements, `#import components.cetz as cc`.
     #s.push(1)
 
     #set align(center + horizon)
     // import the predefined CeTZ objects
-    #import ccomps: *
+    #import components.cetz as cc
     #cetz.canvas({
       import cetz.draw: *
       stroke(white)
       // Name of a component can be called directly.
-      ccircle(tag, (0, 0), name: "c1")
+      cc.circle(tag, (0, 0), name: "c1")
       s.push("c1")
-      crect(tag, "c1.east", (rel: (2, 2)), name: "r1")
+      cc.rect(tag, "c1.east", (rel: (2, 2)), name: "r1")
       s.push("r1")
-      cpolygon(
+      cc.polygon(
         tag,
         "r1.south-east",
         3,

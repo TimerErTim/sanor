@@ -1,4 +1,4 @@
-#import "@local/sanor:0.3.0": *
+#import "@preview/sanor:0.3.0": *
 
 // Set up presentation format.
 #set page(paper: "presentation-16-9", fill: luma(20))
