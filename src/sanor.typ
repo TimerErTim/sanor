@@ -116,12 +116,12 @@
 
   {
     set heading(outlined: i == 1, bookmarked: i == 1)
-
-    body
-
     if i > 1 {
       counter(page).update(n => n - 1)
     }
+    
+    body
+
     pdfpc.pdfpc-slide-markers(ctx)
   }
 
