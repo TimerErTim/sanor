@@ -110,18 +110,16 @@
   }
 }
 
-#let subslide(ctx, func) = {
+#let subslide(ctx, func, idx) = {
   let (body, (ctx, ..)) = func((ctx,))
-  let i = ctx.subslide
 
   {
-    set heading(outlined: i == 1, bookmarked: i == 1)
-    if i > 1 {
+    set heading(outlined: idx == 1, bookmarked: idx == 1)
+    if idx > 1  {
       counter(page).update(n => n - 1)
     }
     
     body
-
     pdfpc.pdfpc-slide-markers(ctx)
   }
 
@@ -208,11 +206,11 @@
   if ctx.handout {
     ctx.subslide = if ctx.handout-index == auto { steps } else { ctx.handout-index }
 
-    return subslide(ctx, func)
+    return subslide(ctx, func, 1)
   } else {
     for i in range(steps) {
       ctx.subslide = i + 1
-      subslide(ctx, func)
+      subslide(ctx, func, ctx.subslide)
     }
   }
 }
